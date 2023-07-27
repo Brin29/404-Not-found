@@ -1,0 +1,126 @@
+:root {
+    --bg-text-color: #333333;
+    --bg-text-color-2: #4F4F4F;
+    --bg-text-footer: #BDBDBD;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    list-style:none;
+    font-family: 'Inconsolata', monospace;
+}
+.container{
+    min-height:100vh;
+    width:95%;/*Que tenga un acnhor del 95% del contenido*/
+    max-width:1500px;/*Su ancho maximo sera 1500px*/
+    margin:0 auto;/*Lo centramos en horizontal*/
+    display:grid;/*Le damos grid*/
+    grid-template:"header" /*Establecemos el valor del contenido*/
+    /* Como por extraña razon no me dejaba establecer los elementos del main decidi dividirlo y añadirle grid en el main aparte con sus elementos */
+                  "main"
+                  "main"
+                  "main"
+                  "footer" 28px;
+}
+main{
+    display:grid;/*Para editar los elementos si usar flex ya que es lo para elementos en dentro de cosas*/
+    gap:30px;
+    grid-template: "imagen titulo" .3fr 
+                   "imagen texto" .2fr/*Se uso una medida mas pequeña para dejarle espacio al boton (no afecta a la imagen)*/
+                   "imagen boton" .5fr
+                   / 40% auto ;
+    margin-left:4vw;
+}
+.encabezado > ul{/*Todos los hijo de encabezado que sean listas*/
+    margin-left:2.4vw;/*El margin de la izquierda se justifica segun el ve*/
+    font-weight:800;/*El grosor del texto*/
+    height:7.2vh;/*El encabezado tendra una altura de 9 viewport height*/
+    display:flex;/*Que sea flexible*/
+    justify-content:flex-start;/*Justifique los elementos al inicio en horizontal*/
+    align-items:flex-end;/*Alinee los elementos al final en vertical*/
+    margin-bottom:6rem;
+}
+.encabezado{
+    grid-area:header;/*Esta pertenece a contenedor*/
+}
+.imagen{
+    grid-area:imagen;/*Pertenece al grid del main*/
+}
+img{
+    width:95%;
+    height:50vh;
+}
+.titulo{
+    grid-area:titulo; /*Pertenece al grid del main*/
+    font-size:xx-large;
+    width:70%;
+    line-height:68px;
+    color: var(--bg-text-color);
+}
+.texto{
+    grid-area:texto; /*Pertenece al grid del main*/
+    color:var(--bg-text-color-2);
+    width:50%;
+    font-size:x-large;/*El tamaño del texto*/
+    line-height:26px;/*Espacio entre columnas*/
+    word-spacing:5px;/*Espacio entre palabras*/
+}
+.boton{
+    grid-area:boton;
+}
+.back-btn{
+    background-color:var(--bg-text-color);
+    padding:1.9em 3.2em;
+    border:none;
+}
+.back-btn > [href$=homepage]{/*El hijo del boton que tenga un enlace que termine en homepage*/
+    color:#fff;
+    text-decoration:none;
+    text-transform:uppercase;/*Texto en mayuscula*/
+    font-size:18px;
+}
+.footer{
+    grid-area:footer;
+    width:96%;/*Esto en caso de que el contenido no ocupe toda la pagina*/
+    color:var(--bg-text-footer);
+    text-align:center;
+}
+.footer-text{
+    font-size:14px;
+}
+.footer-text > a{
+    color:#909090;
+    font-weight:600;
+}
+@media (max-width:650px){
+    .container{
+        grid-template:"header" 0.01fr
+                      "main" 1fr /*Al ponerle al footer 0.01 main toma mas espacio de la fraccion*/
+                      "footer" 0.03fr;/*Esto sirvio para quitar el espacio que quedaba abajo*/
+    }
+    .main{
+        grid-template:"imagen"
+                      "titulo"
+                      "texto" 
+                      "boton";
+    }
+    .encabezado > ul{/*Estamos cambiando la lista no el espacio*/
+        margin-top:30px;/*Y su margin del 30px lo empuje*/
+        align-items:flex-start;/*Que empieze en el principio en vertical en pc lo pusimos al final*/
+    }
+    img{
+        width:100%;
+        height:400px;
+    }
+    .titulo{
+        width:100%;
+    }
+    .texto{
+        width:90%;
+    }
+    .back-btn{
+        margin-top:30px;
+        margin-bottom:35px;
+    }
+}
